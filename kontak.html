@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - RESTORANKU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hamburger-bar {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 300px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .menu.open {
+            transform: translateX(0);
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        .menu .close-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            text-align: center;
+            margin: 20px;
+        }
+        .main-image {
+            width: 100%;
+            max-height: 300vh;
+            object-fit: cover;
+        }
+        .description {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .description h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-bar" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="images/LOGO.jpg" alt="Logo Restoran">
+            <div class="logo-text">RESTORANKU</div>
+        </div>
+    </header>
+    <nav class="menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✖</div>
+        <a href="beranda.html">Beranda</a>
+        <a href="tentang_kami.html">Tentang Kami</a>
+        <a href="login.html">Login</a>
+        <a href="daftar.html">Daftar</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="kritik_dan_saran.html">Kritik dan Saran</a>
+    </nav>
+    <div class="main-content">
+        <img src="images/staff.jpg" alt="tentang_kami" class="main-image">
+        <div class="description">
+            <h1>Hubungi Kami</h1>
+            <p>Terima kasih telah mengunjungi website RESTORANKU. Kami selalu berusaha memberikan layanan terbaik untuk pengalaman makan yang tak terlupakan. Jika Anda memiliki pertanyaan, saran, atau ingin memberikan feedback, jangan ragu untuk menghubungi kami melalui informasi kontak berikut:</p>
+            <p>Email: info@restoranku.com</p>
+            <p>Telepon: +62 21 1234 5678</p>
+            <p>Alamat: Jl. Makan Enak No. 123, Jakarta, Indonesia</p>
+        </div>
+        <div class="social-icons">
+            <p>Ikuti kami di media sosial:</p>
+            <img src="images/Facebook.png" alt="Facebook">
+            <img src="images/instagram.png" alt="Instagram">
+            <img src="images/x.jpg" alt="X">
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+            } else {
+                menu.classList.add('open');
+            }
+        }
+    </script>
+</body>
+</html>

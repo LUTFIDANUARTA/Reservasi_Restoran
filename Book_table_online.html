@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Meja - RESTORANKU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hamburger-bar {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 300px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .menu.open {
+            transform: translateX(0);
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        .menu .close-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            text-align: center;
+            margin: 20px;
+        }
+        .main-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .form-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 50%;
+            padding: 10px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+        }
+        .btn-submit {
+            width: 80%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-bar" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="images/LOGO.jpg" alt="Logo Restoran">
+            <div class="logo-text">RESTORANKU</div>
+        </div>
+    </header>
+    <nav class="menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✖</div>
+        <a href="beranda.html">Beranda</a>
+        <a href="tentang_kami.html">Tentang Kami</a>
+        <a href="login.html">Login</a>
+        <a href="daftar.html">Daftar</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="kritik_saran.html">Kritik dan Saran</a>
+    </nav>
+    <div class="main-content">
+        <img src="images/ruang dalam2.jpg" alt="Gambar utama" class="main-image">
+        <div class="form-container">
+            <h2>Pesan Meja</h2>
+            <form onsubmit="return konfirmasiPesanan()" method="POST">
+                <div class="form-group">
+                    <label for="nama">Atas Nama</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="tanggal">Tanggal</label>
+                    <input type="date" id="tanggal" name="tanggal" required>
+                </div>
+                <div class="form-group">
+                    <label for="jam">Jam</label>
+                    <input type="time" id="jam" name="jam" required>
+                </div>
+                <div class="form-group">
+                    <label for="jumlah">Jumlah Tamu</label>
+                    <input type="number" id="jumlah" name="jumlah" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="lokasi">Lokasi</label>
+                    <select id="lokasi" name="lokasi" required>
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor">Outdoor</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Pesan Sekarang</button><a href="pilih_menu.html"></a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+        }
+
+        function konfirmasiPesanan() {
+            alert("Pesanan Anda berhasil dikirim!");
+            window.location.href = "pilih_menu.html"
+            return false; // Mencegah form submit default
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemilihan Metode Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hamburger-bar {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 300px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .menu.open {
+            transform: translateX(0);
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        .menu .close-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            text-align: center;
+            margin: 20px;
+        }
+        .payment-option {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .payment-option:hover {
+            background-color: #ddd;
+        }
+        .payment-option input {
+            margin-right: 10px;
+        }
+        .pay-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pay-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-bar" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="images/LOGO.jpg" alt="Logo Restoran">
+            <div class="logo-text">RESTORANKU</div>
+        </div>
+    </header>
+    <nav class="menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✖</div>
+        <a href="beranda.html">Beranda</a>
+        <a href="tentang_kami.html">Tentang Kami</a>
+        <a href="login.html">Login</a>
+        <a href="daftar.html">Daftar</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="kritik_dan_saran.html">Kritik dan Saran</a>
+    </nav>
+    <div class="main-content">
+        <h1>Pilih Metode Pembayaran</h1>
+        <div class="payment-option">
+            <input type="checkbox" id="credit-card" name="payment-method">
+            <label for="credit-card">Kartu Kredit / Debit</label>
+        </div>
+        <div class="payment-option">
+            <input type="checkbox" id="bank-transfer" name="payment-method">
+            <label for="bank-transfer">Transfer Bank</label>
+        </div>
+        <div class="payment-option">
+            <input type="checkbox" id="cash-on-delivery" name="payment-method">
+            <label for="cash-on-delivery">Cash on Delivery</label>
+        </div>
+        <button class="pay-button" onclick="processPayment()">Bayar</button>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+            } else {
+                menu.classList.add('open');
+            }
+        }
+
+        function processPayment() {
+            // Retrieve cart data from localStorage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalCost = localStorage.getItem('totalCost') || 0;
+            
+            // Check if cart has items
+            if (cart.length === 0) {
+                alert("Keranjang Anda kosong. Silakan pilih menu terlebih dahulu.");
+                return;
+            }
+
+            // Redirect to the receipt page with cart data
+            localStorage.setItem('paymentMethod', getSelectedPaymentMethod());
+            window.location.href = 'nota.html';
+        }
+
+        function getSelectedPaymentMethod() {
+            const methods = document.getElementsByName('payment-method');
+            for (let method of methods) {
+                if (method.checked) {
+                    return method.nextElementSibling.textContent; // Return label of the checked method
+                }
+            }
+            return 'Belum dipilih'; // If no method is selected
+        }
+    </script>
+</body>
+</html>

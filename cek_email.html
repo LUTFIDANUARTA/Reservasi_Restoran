@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pendaftaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hamburger-bar {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 300px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .menu.open {
+            transform: translateX(0);
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        .menu .close-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            text-align: center;
+            margin: 20px;
+        }
+        .main-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .confirmation-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .confirmation-container h2 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        .confirmation-container p {
+            margin-bottom: 20px;
+        }
+        .btn-home {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn-home:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-bar" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="images/LOGO.jpg" alt="Logo Restoran">
+            <div class="logo-text">RESTORANKU</div>
+        </div>
+    </header>
+    <nav class="menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✖</div>
+        <a href="beranda.html">Beranda</a>
+        <a href="tentang_kami.html">Tentang Kami</a>
+        <a href="login.html">Login</a>
+        <a href="daftar.html">Daftar</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="kritik_saran.html">Kritik dan Saran</a>
+    </nav>
+    <div class="main-content">
+        <img src="images/halaman-utama2.jpg" alt="Gambar utama" class="main-image">
+        <div class="confirmation-container">
+            <h2>Pendaftaran Berhasil!</h2>
+            <p>Terima kasih telah mendaftar. Kami telah mengirimkan email konfirmasi ke alamat email Anda. Silakan <a href="buat_password.html">cek email</a> Anda untuk membuat kata sandi dan mengaktifkan akun Anda.</p>
+            
+            <a href="beranda.html" class="btn-home">Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

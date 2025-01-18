@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTORANKU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+            
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hamburger-bar {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 300px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .menu.open {
+            transform: translateX(0);
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        .menu .close-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            text-align: center;
+            margin: 20px;
+        }
+        .main-image {
+            width: 100%;
+            max-height: 300vh;
+            object-fit: cover;
+        }
+        .description {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .book-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .book-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-bar" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="images/LOGO.jpg" alt="Logo Restoran">
+            <div class="logo-text">RESTORANKU</div>
+        </div>
+    </header>
+    <nav class="menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✖</div>
+        <a href="beranda.html">Beranda</a>
+        <a href="tentang_kami.html">Tentang Kami</a>
+        <a href="login.html">Login</a>
+        <a href="daftar.html">Daftar</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="kritik_dan_saran.html">Kritik dan Saran</a>
+    </nav>
+    <div class="main-content">
+        <img src="images/halaman-utama2.jpg" alt="Gambar utama" class="main-image">
+        <div class="description">
+            <h1>Selamat Datang di Restoran Kami</h1>
+            <p>Restoran kami menawarkan pengalaman kuliner yang tak terlupakan dengan hidangan terbaik yang disiapkan dengan penuh cinta. Kami mengutamakan kualitas dan layanan untuk memberikan yang terbaik bagi Anda.</p>
+            <a href="Book_table_online.html" class="book-button">Book Table Online</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+            } else {
+                menu.classList.add('open');
+            }
+        }
+    </script>
+</body>
+</html>

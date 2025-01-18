@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hamburger-bar {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 300px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .menu.open {
+            transform: translateX(0);
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        .menu .close-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            text-align: center;
+            margin: 20px;
+        }
+        .order-summary {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .order-summary h2 {
+            margin-bottom: 20px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .total-cost {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .payment-method {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .back-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-bar" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="images/LOGO.jpg" alt="Logo Restoran">
+            <div class="logo-text">RESTORANKU</div>
+        </div>
+    </header>
+    <nav class="menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✖</div>
+        <a href="beranda.html">Beranda</a>
+        <a href="tentang_kami.html">Tentang Kami</a>
+        <a href="login.html">Login</a>
+        <a href="daftar.html">Daftar</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="kritik_dan_saran.html">Kritik dan Saran</a>
+    </nav>
+    <div class="main-content">
+        <h1>Nota Pembayaran</h1>
+        <div class="order-summary">
+            <h2>Rincian Pesanan</h2>
+            <div id="order-items">
+                <!-- Order items will be dynamically inserted here -->
+            </div>
+            <div class="total-cost">
+                Total Biaya: <span id="total-cost"></span>
+            </div>
+            <div class="payment-method">
+                Metode Pembayaran: <span id="payment-method"></span>
+            </div>
+        </div>
+        <button class="back-button" onclick="window.location.href='pilih_menu.html'">Kembali ke Menu</button>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+            } else {
+                menu.classList.add('open');
+            }
+        }
+
+        // Load order details from localStorage
+        window.onload = function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalCost = localStorage.getItem('totalCost') || 0;
+            const paymentMethod = localStorage.getItem('paymentMethod') || 'Belum dipilih';
+
+            // Display cart items
+            const orderItemsContainer = document.getElementById('order-items');
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('order-item');
+                itemElement.innerHTML = `
+                    <span>${item.title} (x${item.quantity})</span>
+                    <span>Rp ${item.price.toLocaleString()}</span>
+                    <span>Rp ${item.total.toLocaleString()}</span>
+                `;
+                orderItemsContainer.appendChild(itemElement);
+            });
+
+            // Display total cost and payment method
+            document.getElementById('total-cost').textContent = `Rp ${totalCost.toLocaleString()}`;
+            document.getElementById('payment-method').textContent = paymentMethod;
+        };
+    </script>
+</body>
+</html>

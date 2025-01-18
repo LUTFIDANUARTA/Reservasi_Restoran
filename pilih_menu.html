@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTORANKU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hamburger-bar {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Sidebar Menu */
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 300px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .menu.open {
+            transform: translateX(0);
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid #555;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        .menu .close-btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            text-align: center;
+            margin: 20px;
+        }
+        .menu-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .menu-item {
+            background-color: #fff;
+            border-radius: 10px;
+            width: 48%;
+            margin-bottom: 20px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .menu-item h3 {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .menu-item p {
+            font-size: 14px;
+            color: #777;
+        }
+        .menu-item .price {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #e91e63;
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .popup-content h3 {
+            margin-bottom: 10px;
+        }
+        .popup-content img {
+            width: 100px;
+            height: 100px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .popup-content input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 60px;
+            margin: 10px 0;
+        }
+        .popup-content .price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #e91e63;
+        }
+        .popup-content button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .popup-content button:hover {
+            background-color: #555;
+        }
+
+        /* Total Cost Section */
+        .total-cost {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+            color: #e91e63;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .menu-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .menu-item {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Logo, Name, and Hamburger -->
+    <header>
+        <div class="hamburger-bar" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="images/LOGO.jpg" alt="Logo Restoran">
+            <div class="logo-text">RESTORANKU</div>
+        </div>
+    </header>
+
+    <!-- Sidebar Menu -->
+    <nav class="menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">✖</div>
+        <a href="beranda.html">Beranda</a>
+        <a href="tentang_kami.html">Tentang Kami</a>
+        <a href="login.html">Login</a>
+        <a href="daftar.html">Daftar</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="kritik_dan_saran.html">Kritik dan Saran</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="menu-list">
+            <!-- Menu Item 1 -->
+            <div class="menu-item" onclick="openPopup('Nasi Goreng Spesial', 'https://cdn1-production-images-kly.akamaized.net/nJQeAVYU-4tMPjDLmfwyDGkNyGk=/800x800/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4102226/original/065145300_1658889141-nasi_goreng_resepyummyanak.jpg', 25000)">
+                <img src="https://cdn1-production-images-kly.akamaized.net/nJQeAVYU-4tMPjDLmfwyDGkNyGk=/800x800/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4102226/original/065145300_1658889141-nasi_goreng_resepyummyanak.jpg" alt="Menu 1">
+                <h3>Nasi Goreng Spesial</h3>
+                <p>Dengan ayam, telur, dan sambal</p>
+                <div class="price">Rp 25.000</div>
+            </div>
+
+            <!-- Menu Item 2 -->
+            <div class="menu-item" onclick="openPopup('Mie Ayam', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfhIYR-6Q_XZO4_nRr5N-A-NlTFC6-wjlF6g&s', 20000)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfhIYR-6Q_XZO4_nRr5N-A-NlTFC6-wjlF6g&s" alt="Menu 2">
+                <h3>Mie Ayam</h3>
+                <p>Mie dengan ayam panggang dan sayuran</p>
+                <div class="price">Rp 20.000</div>
+            </div>
+
+            <!-- Menu Item 3 -->
+            <div class="menu-item" onclick="openPopup('Pizza Margherita', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSauRcTuclnQCVy9XtvzdmRwpB4ppEpCs9WGw&s', 45000)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSauRcTuclnQCVy9XtvzdmRwpB4ppEpCs9WGw&s" alt="Menu 3">
+                <h3>Pizza Margherita</h3>
+                <p>Pizza dengan saus tomat, keju, dan basil</p>
+                <div class="price">Rp 45.000</div>
+            </div>
+            <!-- Menu Item 4 -->
+            <div class="menu-item" onclick="openPopup('Es Teh Manis', 'https://dcostseafood.id/wp-content/uploads/2021/12/Es-teh-tawar-manis.jpg', 10000)">
+                <img src="https://dcostseafood.id/wp-content/uploads/2021/12/Es-teh-tawar-manis.jpg" alt="Menu 4">
+                <h3>Es Teh Manis</h3>
+                <p>Teh manis dingin</p>
+                <div class="price">Rp 10.000</div>
+            </div>
+        </div>
+
+        <!-- Total Cost -->
+        <div class="total-cost" id="total-cost">Total Biaya: Rp 0</div>
+
+        <!-- Tombol Pesan Sekarang mengarah ke metode_pembayaran.html -->
+        <button class="book-button" onclick="window.location.href='metode_pembayaran.html'">Pesan Sekarang</button>
+    </div>
+
+    <!-- Popup for Menu Detail -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h3 id="popup-title"></h3>
+            <img id="popup-image" src="" alt="Menu Image">
+            <div class="price" id="popup-price"></div>
+            <input type="number" id="popup-quantity" value="1" min="1">
+            <div class="total-price" id="popup-total-price">Total: Rp 25.000</div>
+            <button onclick="addToCart()">Tambah ke Keranjang</button>
+            <button onclick="closePopup()">Oke</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let totalCost = 0;
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+            } else {
+                menu.classList.add('open');
+            }
+        }
+
+        function openPopup(title, image, price) {
+            const popup = document.getElementById('popup');
+            document.getElementById('popup-title').textContent = title;
+            document.getElementById('popup-image').src = image;
+            document.getElementById('popup-price').textContent = `Rp ${price.toLocaleString()}`;
+            document.getElementById('popup-total-price').textContent = `Total: Rp ${price.toLocaleString()}`;
+            document.getElementById('popup').style.display = 'flex';
+
+            // Update total price when quantity changes
+            const quantityInput = document.getElementById('popup-quantity');
+            quantityInput.addEventListener('input', function() {
+                const quantity = parseInt(quantityInput.value);
+                const total = price * quantity;
+                document.getElementById('popup-total-price').textContent = `Total: Rp ${total.toLocaleString()}`;
+            });
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function addToCart() {
+            const title = document.getElementById('popup-title').textContent;
+            const price = parseInt(document.getElementById('popup-price').textContent.replace('Rp ', '').replace('.', ''));
+            const quantity = parseInt(document.getElementById('popup-quantity').value);
+            const item = { title, price, quantity };
+
+            cart.push(item);
+            totalCost += price * quantity;
+
+            // Update total cost on page
+            document.getElementById('total-cost').textContent = `Total Biaya: Rp ${totalCost.toLocaleString()}`;
+
+            // Save cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            closePopup();
+        }
+    </script>
+
+</body>
+</html>
